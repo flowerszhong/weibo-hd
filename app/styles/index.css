@@ -1,0 +1,42 @@
+/*-- HTML5 Boilerplate. -----------------------------------------------------*/
+
+@import "../../vendor/h5bp/css/normalize.css";
+@import "../../vendor/h5bp/css/main.css";
+
+/*-- Application stylesheets. -----------------------------------------------*/
+
+
+#content,#control,#square{
+    float: left;
+    height: 100%;
+    border:1px solid red;
+}
+
+#content{
+    width: 400px;
+}
+#control{
+    width:100px;
+}
+
+#square{
+    width: 400px;
+}
+
+
+
+
+/**
+ * create weibo
+ */
+
+.create-weibo{
+    position: fixed;
+    margin: 40px auto;
+    width:500px;
+    height: 500px;
+    left:300px;
+    border: 1px solid red;
+    background: yellow;
+    z-index: 999;
+}
