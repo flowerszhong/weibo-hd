@@ -23,7 +23,7 @@ function(app,weibo) {
 
   window.weiboCollection = new weibo.Collection();
   // Default View.
-  Content.View = Backbone.Layout.extend({
+  Content.View = Backbone.View.extend({
     template: "content",
     initialize : function () {
         weiboCollection.bind("add", this.addOne, this);
@@ -31,6 +31,7 @@ function(app,weibo) {
         weiboCollection.bind("all", this.render, this);
 
         weiboCollection.fetch();
+        this.render();
     },
     events : {
 
@@ -55,7 +56,7 @@ function(app,weibo) {
         var _weibo = new weibo.Views.Layout({
             model : _model
         });
-        this.$list.append(_weibo.render().$el);
+        this.$el.find('#list').append(_weibo.el);
     },
     addAll : function () {
         weiboCollection.each(this.addOne);

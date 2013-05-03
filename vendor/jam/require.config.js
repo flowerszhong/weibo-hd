@@ -34,6 +34,11 @@ var jam = {
             "name" : "json2",
             "location" : "../vendor/jam/JSON-js",
             "main" : "json2.js"
+        },
+        {
+            "name" : "text",
+            "location" : "../vendor/jam/require",
+            "main" : "text.js"
         }
     ],
     "version": "0.2.11",

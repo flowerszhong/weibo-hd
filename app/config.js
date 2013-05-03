@@ -6,7 +6,7 @@ require.config({
   deps: ["../vendor/jam/require.config", "main"],
 
   paths: {
-    // Put paths here.
+    "templates" : "../app/templates"
   },
 
   shim: {
