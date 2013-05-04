@@ -21,10 +21,6 @@ function(app,Create) {
     model: Control.Model
   });
 
-  Backbone.LayoutManager.configure({
-    manage: true
-  });
-
   Control.View = Backbone.Layout.extend({
     // el : "#control",
     template: "control",

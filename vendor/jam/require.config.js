@@ -3,12 +3,12 @@ var jam = {
         {
             "name": "backbone",
             "location": "../vendor/jam/backbone",
-            "main": "backbone.js"
+            "main": "backbone-0.9.9.js"
         },
         {
             "name": "backbone.layoutmanager",
             "location": "../vendor/jam/backbone.layoutmanager",
-            "main": "backbone.layoutmanager.js"
+            "main": "backbone.layoutmanager-0.8.0.js"
         },
         {
             "name": "backbone.localstorage",
@@ -47,7 +47,8 @@ var jam = {
             "deps": [
                 "jquery",
                 "lodash",
-                "json2"
+                "json2",
+                "handlebars"
             ],
             "exports": "Backbone"
         },

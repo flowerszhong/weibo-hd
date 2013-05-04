@@ -9,7 +9,7 @@ define([
 
   var JST = window.JST = window.JST || {};
 
-  Backbone.LayoutManager.configure({
+  Backbone.Layout.configure({
     // Allow LayoutManager to augment Backbone.View.prototype.
     manage: true,
 
@@ -30,7 +30,6 @@ define([
       // Seek out the template asynchronously.
       $.get(app.root + path, function(contents) {
         // done(JST[path] = _.template(contents));
-        console.log(contents);
         done(JST[path] = Handlebars.compile(contents));
       });
     }

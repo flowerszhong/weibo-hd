@@ -13,8 +13,9 @@ function(app,Router,Login,Product) {
     var loginView = new Login.Views.Layout();
     loginView.render();
   }else{
-    var productLayout = new Product.Views.Layout();
-    productLayout.$el.appendTo("#main");
+    var productLayout = new Product.Views.Layout({
+      el : "#main"
+    });
     productLayout.render();
     Backbone.history.start({ pushState: true, root: app.root });
   }

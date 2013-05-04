@@ -24,7 +24,7 @@ function(app, $, _weiboHTML) {
         }
     });
 
-    var weiboListStoragePool = window.weiboListStoragePool = new Store("weibo-collection");
+    weiboListStoragePool = window.weiboListStoragePool || new Store("weibo-collection");
 
     // Default Collection.
     Weibo.Collection = Backbone.Collection.extend({
@@ -32,54 +32,53 @@ function(app, $, _weiboHTML) {
         localStorage: weiboListStoragePool
     });
 
-    // Default View.
-    // Weibo.Views.Layout = Backbone.Layout.extend({
-    //   tagName : "div",
-    //   className : "_weibo",
-    //   template: "weibo",
-    //   initialize: function() {
-    //     console.log(this.model);
-    //     _.bindAll(this, "render");
-    //     // this.model.bind('change', this.render, this);
-    //     // this.model.bind('destroy', this.remove, this);
-    //     this.render();
-    //   },
-    //   render: function(template, context) {
-    //       $.ajax({
-    //         "url" :"error"
-    //       });
+    weiboCollection = window.weiboCollection || new Weibo.Collection();
 
-    //       console.log(this.el);
-    //       console.log(this.$el);
-    //       console.log(this.model);
-    //       console.log(this.template);
 
-    //       $(this.el).html(this.template(this.model.toJSON()));
-    //       // return template(this.model.toJSON());
-    //       return this;
-    //       return template(context);
-    //   }
-
-    // });
-
-    Weibo.Views.Layout = Backbone.View.extend({
+    Weibo.Views.Item = Backbone.View.extend({
         tagName: "div",
         className: "_weibo",
-        // template : Handlebars.compile(_weiboHTML),
+        template : "weibo",
         events: {},
-        initialize: function() {
-            console.log(this.model);
-            // _.bindAll(this, "render");
-            this.model.bind('change', this.render, this);
-            this.model.bind('destroy', this.remove, this);
-            
-            this.render();
+        serialize: function() {
+            return {
+                model: this.model
+            }
         },
-        render: function() {
-            var template = Handlebars.compile(_weiboHTML);
-            var _html = template(this.model.toJSON());
-            $(this.el).html(_html);
-            return this;
+        initialize: function() {
+            this.listenTo(this.model, "change", this.render);
+        }
+    });
+
+    Weibo.Views.List = Backbone.View.extend({
+        initialize: function() {
+            weiboCollection.bind("add", this.addOne, this);
+            weiboCollection.bind("reset", this.addAll, this);
+            weiboCollection.bind("all", this.render, this);
+
+            weiboCollection.fetch();
+        },
+        // serialize: function() {
+        //     return { collection: weiboCollection};
+        // },
+        add: function() {
+
+        },
+
+        // beforeRender: function() {
+        //     weiboCollection.each(function(_weibo) {
+        //         this.insertView("ul", new Weibo.Views.Item({
+        //             model: _weibo
+        //         }));
+        //     }, this);
+        // },
+        addOne: function(_model) {
+            this.insertView("div",new Weibo.Views.Item({
+                model : _model
+            }));
+        },
+        addAll: function() {
+            // weiboCollection.each(this.addOne);
         }
     });
 

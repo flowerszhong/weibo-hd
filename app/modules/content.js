@@ -1,69 +1,44 @@
 // Content module
 define([
-  // Application.
-  "app",
-  "modules/weibo"
-],
+// Application.
+"app",
+    "modules/weibo"],
 
 // Map dependencies from above array.
-function(app,weibo) {
 
-  // Create a new module.
-  var Content = app.module();
+function(app, weibo) {
 
-  // Default Model.
-  Content.Model = Backbone.Model.extend({
-  
-  });
+    // Create a new module.
+    var Content = app.module();
 
-  // Default Collection.
-  Content.Collection = Backbone.Collection.extend({
-    model: Content.Model
-  });
+    // Default Model.
+    Content.Model = Backbone.Model.extend({
 
-  window.weiboCollection = new weibo.Collection();
-  // Default View.
-  Content.View = Backbone.View.extend({
-    template: "content",
-    initialize : function () {
-        weiboCollection.bind("add", this.addOne, this);
-        weiboCollection.bind("reset", this.addAll, this);
-        weiboCollection.bind("all", this.render, this);
+    });
 
-        weiboCollection.fetch();
-        this.render();
-    },
-    events : {
+    // Default Collection.
+    Content.Collection = Backbone.Collection.extend({
+        model: Content.Model
+    });
 
-    },
-    views : {
-      
-    },
-    render : function  (template,context) {
-        return template(context);
-    },
-    afterRender : function  () {
-        this.$list = this.$el.find('#list');
-    },
-    add : function () {
+    // Default View.
+    Content.View = Backbone.View.extend({
+        template: "content",
         
-    },
-    addOne : function (_model) {
-        // _model.set({
-        //     "isNew" : true
-        // });
-        // _model.save();
-        var _weibo = new weibo.Views.Layout({
-            model : _model
-        });
-        this.$el.find('#list').append(_weibo.el);
-    },
-    addAll : function () {
-        weiboCollection.each(this.addOne);
-    }
-  });
+        events: {
 
-  // Return the module for AMD compliance.
-  return Content;
+        },
+        Views : {
+             "#list" : new weibo.Views.List()
+        },
+        render: function(template, context) {
+            return template(context);
+        },
+        afterRender: function() {},
+       
+    });
+
+    // Return the module for AMD compliance.
+    return Content;
 
 });
