@@ -2,7 +2,8 @@
 define([
 // Application.
 "app",
-    "modules/weibo"],
+"modules/weibo"
+],
 
 // Map dependencies from above array.
 
@@ -22,19 +23,20 @@ function(app, weibo) {
     });
 
     // Default View.
-    Content.View = Backbone.View.extend({
+    Content.View = Backbone.Layout.extend({
         template: "content",
         
         events: {
 
         },
-        Views : {
-             "#list" : new weibo.Views.List()
-        },
+
         render: function(template, context) {
             return template(context);
         },
-        afterRender: function() {},
+
+        afterRender: function() {
+            this.setView("#list",new weibo.Views.List());
+        }
        
     });
 

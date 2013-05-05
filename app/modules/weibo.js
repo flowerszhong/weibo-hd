@@ -36,14 +36,22 @@ function(app, $, _weiboHTML) {
 
 
     Weibo.Views.Item = Backbone.View.extend({
+        manage : false,
         tagName: "div",
         className: "_weibo",
-        template : "weibo",
+        template : "<div class='_weibo'><div>",
         events: {},
-        serialize: function() {
-            return {
-                model: this.model
-            }
+        // serialize: function() {
+        //     return {
+        //         model: this.model
+        //     }
+        // },
+        
+        initialize : function  () {
+            
+        },
+        render : function () {
+            $(this.el).html(this.template);
         },
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
@@ -51,6 +59,7 @@ function(app, $, _weiboHTML) {
     });
 
     Weibo.Views.List = Backbone.View.extend({
+        el : false,
         initialize: function() {
             weiboCollection.bind("add", this.addOne, this);
             weiboCollection.bind("reset", this.addAll, this);
@@ -58,27 +67,32 @@ function(app, $, _weiboHTML) {
 
             weiboCollection.fetch();
         },
-        // serialize: function() {
-        //     return { collection: weiboCollection};
-        // },
+        beforeRender: function() {
+              // weiboCollection.each(function(_weibo) {
+              //   this.insertView("#list", new Weibo.Views.Item({
+              //     model: _weibo
+              //   }));
+              // }, this);
+        },
+        afterRender : function  () {
+        },
+
         add: function() {
 
         },
 
-        // beforeRender: function() {
-        //     weiboCollection.each(function(_weibo) {
-        //         this.insertView("ul", new Weibo.Views.Item({
-        //             model: _weibo
-        //         }));
-        //     }, this);
-        // },
         addOne: function(_model) {
-            this.insertView("div",new Weibo.Views.Item({
+            console.log("addOne");
+            console.log(_model);
+            var _v = new Weibo.Views.Item({
                 model : _model
-            }));
+            });
+
+            $("#list").append(_v.el);
         },
         addAll: function() {
-            // weiboCollection.each(this.addOne);
+            console.log("addAll");
+            weiboCollection.each(this.addOne);
         }
     });
 
