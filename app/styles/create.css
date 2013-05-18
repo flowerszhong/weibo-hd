@@ -1,0 +1,33 @@
+/**
+ * create weibo
+ */
+
+.create-weibo{
+    position: fixed;
+    margin: 40px auto;
+    width:100%;
+    height: 100%;
+    left:0;
+    top:0;
+    z-index: 999;
+}
+
+.create-weibo-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+    z-index: 1000;
+}
+
+.create-weibo article{
+    position: relative;
+    width:400px;
+    margin: 40px auto;
+    z-index: 1001;
+}

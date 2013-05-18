@@ -13,10 +13,9 @@ function(app,Router,Login,Product) {
     var loginView = new Login.Views.Layout();
     loginView.render();
   }else{
-    var productLayout = new Product.Views.Layout({
+    var productLayout = app.mainLayout = new Product.Views.Layout({
       el : "#main"
-    });
-    productLayout.render();
+    }).render();
     Backbone.history.start({ pushState: true, root: app.root });
   }
   $(document).on("click", "a[href]:not([data-bypass])", function(evt) {

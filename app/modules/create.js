@@ -3,7 +3,8 @@ define([
   // Application.
   "app",
   "modules/weibo",
-  "lodash"
+  "lodash",
+  "css!styles/create.css"
 ],
 
 // Map dependencies from above array.
@@ -28,11 +29,15 @@ function(app,Weibo,_) {
     tagName : "div",
     className : "create-weibo",
     template: "create",
+    beforeRender : function  () {
+      // this.$el.width(1000).height(1000);
+    },
     render : function  (template,context) {
         return template(context);
     },
     afterRender : function  () {
         $('body').append(this.$el);
+        this.$content = this.$el.find('#new-weibo-content');
     },
     events:{
         "click #send" : "send",
@@ -41,14 +46,16 @@ function(app,Weibo,_) {
     send : function  () {
         var weibo = {
             "id" : _.uniqueId('_weibo'),
-            "content" : "a new weibo"
+            "createTime" : Date.now(),
+            "content" : this.$content.val()
         };
 
         var _weibo = new Weibo.Model(weibo);
         window.weiboCollection.create(_weibo);
+        window.weiboCollection.fetch();
     },
     cancel : function  () {
-        
+        this.remove();
     }
   });
 

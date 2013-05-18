@@ -4,11 +4,13 @@ var jam = {
             "name": "backbone",
             "location": "../vendor/jam/backbone",
             "main": "backbone-0.9.9.js"
+            // "main": "backbone.js"
         },
         {
             "name": "backbone.layoutmanager",
             "location": "../vendor/jam/backbone.layoutmanager",
             "main": "backbone.layoutmanager-0.8.0.js"
+            // "main": "backbone.layoutmanager-0.7.1.js"
         },
         {
             "name": "backbone.localstorage",
@@ -39,7 +41,12 @@ var jam = {
             "name" : "text",
             "location" : "../vendor/jam/require",
             "main" : "text.js"
-        }
+        },
+        {
+            "name" : "css",
+            "location" : "../vendor/jam/require",
+            "main" : "css.js"
+        },
     ],
     "version": "0.2.11",
     "shim": {
@@ -47,7 +54,7 @@ var jam = {
             "deps": [
                 "jquery",
                 "lodash",
-                "json2",
+                // "json2",
                 "handlebars"
             ],
             "exports": "Backbone"

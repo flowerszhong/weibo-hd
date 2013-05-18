@@ -5,6 +5,7 @@ define([
   "modules/control",
   "modules/content",
   "modules/square",
+  "css!styles/product.css"
 ],
 
 // Map dependencies from above array.
@@ -12,16 +13,6 @@ function(app,Control,Content,Square) {
 
   // Create a new module.
   var Product = app.module();
-
-  // Default Model.
-  Product.Model = Backbone.Model.extend({
-  
-  });
-
-  // Default Collection.
-  Product.Collection = Backbone.Collection.extend({
-    model: Product.Model
-  });
 
   var controlView = Control.View,
       contentView = Content.View,
@@ -39,5 +30,4 @@ function(app,Control,Content,Square) {
 
   // Return the module for AMD compliance.
   return Product;
-
 });

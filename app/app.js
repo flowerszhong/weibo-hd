@@ -1,7 +1,6 @@
 define([
   "backbone.layoutmanager",
-  "backbone.localstorage",
-  "handlebars"
+  "backbone.localstorage"
 ], function() {
   var app = {
     root: "/"
@@ -29,8 +28,8 @@ define([
 
       // Seek out the template asynchronously.
       $.get(app.root + path, function(contents) {
-        // done(JST[path] = _.template(contents));
-        done(JST[path] = Handlebars.compile(contents));
+        done(JST[path] = _.template(contents));
+        // done(JST[path] = Handlebars.compile(contents));
       });
     }
   });

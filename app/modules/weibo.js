@@ -1,12 +1,11 @@
 // Weibo module
 define([
     "app",
-    "jquery",
-    "text!templates/weibo.html"],
+    "jquery"],
 
 // Map dependencies from above array.
 
-function(app, $, _weiboHTML) {
+function(app, $) {
 
     // Create a new module.
     var Weibo = app.module();
@@ -16,7 +15,7 @@ function(app, $, _weiboHTML) {
         defaults: {
             "content": null,
             "authorId": null,
-            "createTime": null,
+            "createTime": Date.now(),
             "updateTime": null,
             "image": null,
             "video": null,
@@ -36,22 +35,12 @@ function(app, $, _weiboHTML) {
 
 
     Weibo.Views.Item = Backbone.View.extend({
-        manage : false,
-        tagName: "div",
-        className: "_weibo",
-        template : "<div class='_weibo'><div>",
-        events: {},
-        // serialize: function() {
-        //     return {
-        //         model: this.model
-        //     }
-        // },
-        
-        initialize : function  () {
-            
-        },
-        render : function () {
-            $(this.el).html(this.template);
+        template : "weibo",
+        tagName : "li",
+        serialize: function() {
+            return {
+                model: this.model
+            }
         },
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
@@ -59,40 +48,24 @@ function(app, $, _weiboHTML) {
     });
 
     Weibo.Views.List = Backbone.View.extend({
+        template : "list",
         el : false,
+        serialize: function() {
+          // return { collection: weiboCollection };
+        },
         initialize: function() {
-            weiboCollection.bind("add", this.addOne, this);
-            weiboCollection.bind("reset", this.addAll, this);
-            weiboCollection.bind("all", this.render, this);
-
-            weiboCollection.fetch();
+          this.listenTo(weiboCollection, {
+            "reset": this.render,
+          });
+          weiboCollection.fetch();
         },
         beforeRender: function() {
-              // weiboCollection.each(function(_weibo) {
-              //   this.insertView("#list", new Weibo.Views.Item({
-              //     model: _weibo
-              //   }));
-              // }, this);
-        },
-        afterRender : function  () {
-        },
-
-        add: function() {
-
-        },
-
-        addOne: function(_model) {
-            console.log("addOne");
-            console.log(_model);
-            var _v = new Weibo.Views.Item({
-                model : _model
-            });
-
-            $("#list").append(_v.el);
-        },
-        addAll: function() {
-            console.log("addAll");
-            weiboCollection.each(this.addOne);
+          weiboCollection.each(function(_weibo) {
+            console.log(_weibo);
+            this.insertView("ul",new Weibo.Views.Item({
+              model: _weibo
+            }));
+          }, this);
         }
     });
 

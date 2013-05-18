@@ -1,0 +1,13 @@
+.content-header{
+    padding:5px 10px;
+    height: 60px;
+    background: #eee;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.content-header>div{
+    float: left;
+    text-align: center;
+    width: 16%;
+}
