@@ -1,11 +1,16 @@
 #main{
-    position: relative;
-    height: 100%;
-    padding-left:80px;
-    border-radius: 5px;
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:3px;
+    top:16px;
+    left:3px;
+    right:3px;
+    padding-left: 80px;
+    border-radius: 3px;
+    background-color: green;
 }
 #container{
-    width: 100%;
     vertical-align: top;
 }
 
@@ -14,8 +19,8 @@
 }
 
 #control{
-    position: fixed;
-    left: 2px;
+    position: absolute;
+    left: 0;
     width:80px;
     height:100%;
     text-align: center;
@@ -25,6 +30,7 @@
     width: 48%;
     display: inline-block;
     box-sizing: border-box;
+    background: #fff;
 }
 
 

@@ -36,7 +36,7 @@ function(app, $) {
 
     Weibo.Views.Item = Backbone.View.extend({
         template : "weibo",
-        tagName : "li",
+        tagName : "div",
         serialize: function() {
             return {
                 model: this.model

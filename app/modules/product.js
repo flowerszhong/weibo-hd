@@ -25,6 +25,11 @@ function(app,Control,Content,Square) {
       "#control" : new controlView(),
       '#content' : new contentView(),
       '#square' : new squareView()
+    },
+    afterRender : function () {
+      // var _w = $(window).width()-100,
+      //     _h = $(window).height() - 20;
+      // this.$el.width(_w).height(_h);
     }
   });
 
