@@ -7,7 +7,8 @@ function(app,login) {
     routes: {
       "": "index",
       "test" : "testRouter",
-      "login" : "login"
+      "login" : "login",
+      "test" : "test"
     },
 
     index: function() {
@@ -15,6 +16,9 @@ function(app,login) {
     },
     testRouter : function  () {
       console.log("testRouter");
+    },
+    test : function  () {
+      
     }
   });
 

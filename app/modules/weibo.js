@@ -1,7 +1,9 @@
 // Weibo module
 define([
     "app",
-    "jquery"],
+    "jquery",
+    "css!styles/weibo.css"
+    ],
 
 // Map dependencies from above array.
 
@@ -36,7 +38,7 @@ function(app, $) {
 
     Weibo.Views.Item = Backbone.View.extend({
         template : "weibo",
-        tagName : "div",
+        el: false,
         serialize: function() {
             return {
                 model: this.model

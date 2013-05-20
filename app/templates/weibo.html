@@ -1,8 +1,35 @@
 <div class="_weibo">
 
-    
-    <%= model.get("content") %>
-    <br>
-    <%= model.get("createTime") %>
-    <br>
+    <div class="w-owner-avatar">
+        <img src="../app/img/avatar.jpg" alt="" width="40" height="40"></div>
+    <div class="w-info">
+        <div class="w-owner">
+            <strong>Mzhong</strong>
+        </div>
+        <div class="w-content">
+            <%= model.get("content") %>
+        </div>
+        <div class="w-func">
+            <small class="w-post-time">
+                12 Secs Ago
+            </small>
+            <small>| from <a href="#">Webpage</a></small>
+            <small class="gray">
+                | view(216)
+            </small>
+            
+            <small class="function-icons">
+                <i class="icon-remove"></i>
+                |
+                <i class="icon-thumbs-up"></i>
+                |
+                <i class="icon-star"></i>
+                |
+                <i class="icon-comment"></i>
+                |
+                <i class="icon-share"></i>
+            </small>
+        </div>
+    </div>
+
 </div>

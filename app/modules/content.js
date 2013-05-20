@@ -26,7 +26,7 @@ function(app, weibo) {
     // Default View.
     Content.View = Backbone.Layout.extend({
         template: "content",
-
+        el:false,
         views : {
             "#list" : new weibo.Views.List()
         },

@@ -1,0 +1,27 @@
+.loading{
+    text-align: center;
+}
+
+
+._weibo{
+    position: relative;
+    border-top:1px solid #E6E6E6;;
+    padding: 10px 10px 10px 60px;
+    color: #595959;
+}
+
+.w-owner-avatar{
+    position: absolute;
+    top:10px;
+    left:10px;
+}
+
+.w-content{
+    padding-bottom: 10px;
+}
+
+.function-icons{
+    padding-top:3px;
+    float: right;
+    cursor: pointer;
+}
