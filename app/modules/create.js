@@ -36,8 +36,14 @@ function(app,Weibo,_) {
         return template(context);
     },
     afterRender : function  () {
+        var self = this;
         $('body').append(this.$el);
         this.$content = this.$el.find('#new-weibo-content');
+        $(document).on("keydown.create",function(e){
+            if(e.keyCode === 27){
+                self.remove();
+            }
+        })
     },
     events:{
         "click #send" : "send",
@@ -55,6 +61,7 @@ function(app,Weibo,_) {
         window.weiboCollection.fetch();
     },
     cancel : function  () {
+        $(document).off("keydown.create");
         this.remove();
     }
   });

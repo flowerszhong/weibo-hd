@@ -27,9 +27,13 @@ function(app,Control,Content,Square) {
       '#square' : new squareView()
     },
     afterRender : function () {
-      // var _w = $(window).width()-100,
-      //     _h = $(window).height() - 20;
-      // this.$el.width(_w).height(_h);
+      var _h = $(this.el).height();
+      this.$el.find("#container").height(_h);
+      var self = this;
+      $(window).on("resize",function () {
+          var _h = $(self.el).height();
+          self.$el.find("#container").height(_h);
+      })
     }
   });
 
